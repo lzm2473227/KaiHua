@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background:#F7F7F7">
     <div class="recruitment-outer recruitment">
       <div class="t-inp">
         <img src="../../assets/seach.png" alt="">
@@ -54,7 +54,17 @@
     </div>
     <div class="online-contact">
         <img src="../../assets/在线联系banner.png" alt="">
+    </div>
+    <div class="contact">
+      <div class="contact-con">
+
       </div>
+    </div>
+    <div class="place">
+      <div class="place-con">
+
+      </div>
+    </div>
   </div>
 </template>
 
@@ -68,6 +78,7 @@ export default {
 .recruitment{
   width: 1200px;
   margin: 0 auto;
+  background: #fff;
 }
 .recruitment-outer{
   /* height: 1500px; */
@@ -125,7 +136,8 @@ export default {
   align-items: center;
 }
 .recruitment-body{
-  margin: 0 50px 50px;
+  margin: 0 50px;
+  padding-bottom: 50px;
 }
 .recruitment-body .h2-top{
   margin-top: 40px;
@@ -153,7 +165,6 @@ export default {
 .recruitment-body .jobs{
   height: 12px;
   font-size: 16px;
-  /* font-weight: 300; */
   color: #333333;
   opacity: 1;
   margin-bottom:12px;
@@ -176,5 +187,35 @@ export default {
 }
 .online-contact img{
   width: 100%;
+}
+.contact{
+  width: 100%;
+  height: 420px;
+  background: #F7F7F7;
+  position: relative;
+}
+.contact .contact-con{
+  position: absolute;
+  top: -138px;
+  left: 50%;
+  margin-left: -600px;
+  width: 1200px;
+  height: 498px;
+  background: #fff;
+  opacity: 1;
+}
+.place{
+  width: 100%;
+  height: 603px;
+  background: #FFFFFF;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+}
+.place .place-con{
+  width: 1200px;
+  height: 483px;
+  margin: 0 auto;
+  background-color: rgb(245, 10, 10);
 }
 </style>
