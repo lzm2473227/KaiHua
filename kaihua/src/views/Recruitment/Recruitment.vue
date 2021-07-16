@@ -1,5 +1,26 @@
 <template>
-  <div style="background:#F7F7F7">
+  <div class="rqw">
+    <div class="header">
+    <div class="outer">
+      <div class="header-h1">
+      <img src="../../assets/logo_statusbar.png" alt="凯华Log" @click="$router.push('/')">
+      <div class="title"> 
+        <div class="bold">凯华技术</div>
+        <div>www.kaihuau.cn</div>
+      </div>
+    </div>
+    <div class="search" style="width:300px"></div>
+    <div class="header-new">
+      <ul>
+        <li @click="$router.push('/home')">首页</li>
+        <li @click="$router.push('/product')">产品及技术</li>
+        <li @click="$router.push('/mall')">正品汇商城</li>
+        <li class="active">联系我们</li>
+      </ul>
+    </div>
+    </div>
+    </div>
+    <div style="background:#F7F7F7; margin-top:100px;">
     <div class="recruitment-outer recruitment">
       <div class="t-inp">
         <img src="../../assets/seach.png" alt="">
@@ -15,7 +36,7 @@
       </div>
       <div class="recruitment-body">
         <h2>1、系统运维工程师</h2>
-        <button>申请岗位</button>
+        <button @click="apply">申请岗位</button>
         <div class="rules">深圳 |工作经验 2年 | 本科|招聘人数 2人</div>
         <div class="jobs">工作职责</div>
         <p>1、负责网站的日常运维、部署、监控、系统优化等工作，保证线上环境稳定运行；</p>
@@ -33,7 +54,7 @@
         <p>6、认真严谨、平实稳重、责任心强，良好的沟通能力及团队合作精神，能承受一定工作压力；</p>
         <p>7、熟悉负载均衡、双机热备技术，熟悉阿里云服务架构者优先。</p>
         <h2 class="h2-top">2、前端(JS)开发工程师</h2>
-        <button>申请岗位</button>
+        <button @click="apply">申请岗位</button>
         <div class="rules">深圳 |工作经验 1年 | 本科|招聘人数 3人</div>
         <div class="jobs">岗位职责</div>
         <p>1、负责公司产品前端代码开发、页面重构以及交互设计逻辑处理；</p>
@@ -52,25 +73,114 @@
         
       </div>
     </div>
-    <div class="online-contact">
-        <img src="../../assets/在线联系banner.png" alt="">
+    <div class="online-contact" >
+        <img src="../../assets/banner.png" alt="">
     </div>
-    <div class="contact">
-      <div class="contact-con">
-
-      </div>
+    <div class="contact" id="welfare">
+      <form class="contact-con">
+        <h2>在线联系</h2>
+        <p>ONLINE CONTACT</p>
+        <div class="name">
+          <div class="posi">
+            <img src="../../assets/name.png" alt="">
+            <div class="b">姓名</div>|
+          </div>
+          <input type="text" placeholder="请输入您的姓名" value="" class="indent" v-model="name">
+          <div class="posi2">
+            <img src="../../assets/call2.png" alt="">
+            <div class="b">联系电话</div>|
+          </div>
+          <input type="text" placeholder="请输入您的联系电话" value="" class="indent2" v-model="phone">
+        </div>
+        <div class="mail">
+          <div class="posi3">
+            <img src="../../assets/mail.png" alt="">
+            <div class="b">邮箱</div>|
+          </div>
+          <input type="text" placeholder="请输入您的邮箱" value="" v-model="mail">
+        </div>
+        <button @click="sub">提交</button>
+      </form>
     </div>
     <div class="place">
       <div class="place-con">
-
+        <h2>联系方式</h2>
+        <p>CONTACT INFORMATION</p>
+        <div class="map">
+          <div class="map-left">
+            <Map></Map>
+          </div>
+          <div class="map-right">
+            <div>
+              <img src="../../assets/ic-dianhua.png" alt="" style="color:#fff">
+              <span>联系电话</span>
+              <span class="brs">|</span>
+              <span>0755-83820003</span>
+            </div>
+            <div>
+              <img src="../../assets/ic-youxiang.png" alt="">
+              <span>公司邮箱</span>
+              <span class="brs">|</span>
+              <span>kf@zte-yd.com</span>
+            </div>
+            <div>
+              <img src="../../assets/ic-shijian.png" alt="">
+              <span>办公时间</span>
+              <span class="brs">|</span>
+              <span>星期一至五 08:30-18:00</span>
+            </div>
+            <div>
+              <img src="../../assets/ic-dizhi.png" alt="">
+              <span>办公地址</span>
+              <span class="brs">|</span>
+              <span>深圳福田区深南大道6029号世纪豪庭大厦9楼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="r" id="w" v-show="isShow">
+      <div class="alert">
+        <img src="../../assets/ic-tijiaochenggong.png" alt="" class="imgs">
+        <div class="da">提交成功！</div>
+        <div class="xiao">我们的工作人员将尽快与您联系！</div>
+        <button @click="off">好的</button>
       </div>
     </div>
   </div>
 </template>
-
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=mTdnjQQTwYOAbrpdLKBDqG9mCKiGe8ZK"></script>
 <script>
+import Map from "../../components/map"
 export default {
   name:'Recruitment',
+  data(){
+      return{
+        mail:"",
+        name:"",
+        phone:"",
+        isShow: false
+      }
+    },
+  components:{
+    Map
+  },
+  methods:{
+    off(){
+      this.isShow = false
+    },
+      sub(){
+      this.mail = ""
+      this.name = ""
+      this.phone = ""
+      this.isShow = true
+    },
+    apply(){
+      let a = window.scrollTo(0,document.querySelector('#welfare').offsetTop);
+      console.log(a);
+    },
+  }
 }
 </script>
 
@@ -204,18 +314,256 @@ export default {
   background: #fff;
   opacity: 1;
 }
+.contact-con h2{
+  height: 35px;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 35px;
+  color: #E85C2C;
+  opacity: 1;
+  margin-top: 40px;
+}
+.contact-con p{
+  height: 27px;
+  font-size: 24px;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: 28px;
+  color: #000000;
+  opacity: 0.3;
+  margin-bottom: 40px;
+}
+.contact-con{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mail{
+  margin: 40px 0;
+}
+.contact-con .name{
+  display: flex;
+  position: relative;
+}
+.contact-con .name .posi{
+  position: absolute;
+  top: 21px;
+  left: 44px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.contact-con .name .posi2{
+  position: absolute;
+  top: 21px;
+  left: 625px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.contact-con .name input{
+  width: 540px;
+  height: 70px;
+  border: 1px solid #DDDDDD;
+  opacity: 1;
+  border-radius: 8px;
+  font-size: 17px;
+  outline: none;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.contact-con button{
+  margin-bottom: 60px;
+}
+.b{
+  padding: 0 24px;
+}
+.indent{
+  text-indent: 160px;
+}
+.indent2{
+  text-indent: 180px;
+}
+.contact-con .mail{
+  width: 1120px;
+  height: 70px;
+  border: 1px solid #DDDDDD;
+  opacity: 1;
+  border-radius: 8px;
+}
+.contact-con .mail{
+  position: relative;
+}
+.contact-con .mail .posi3{
+  position: absolute;
+  top: 21px;
+  left: 24px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.contact-con .mail input{
+  width: 1120px;
+  height: 68px;
+  border: 1px solid #DDDDDD;
+  opacity: 1;
+  border-radius: 8px;
+  font-size: 17px;
+  outline: none;
+  border: 0;
+  text-indent: 160px;
+}
+.contact-con button{
+  width: 380px;
+  height: 68px;
+  background: #E85C2C;
+  opacity: 1;
+  border-radius: 41px;
+  border: 0;
+  outline: none;
+  padding: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 26px;
+}
 .place{
   width: 100%;
   height: 603px;
   background: #FFFFFF;
   opacity: 1;
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
 }
 .place .place-con{
   width: 1200px;
-  height: 483px;
+  /* height: 483px; */
   margin: 0 auto;
-  background-color: rgb(245, 10, 10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.place-con h2{
+  height: 35px;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 35px;
+  color: #E85C2C;
+  opacity: 1;
+  margin-top: 40px;
+}
+.place-con p{
+  height: 27px;
+  font-size: 24px;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: 28px;
+  color: #000000;
+  opacity: 0.3;
+  margin-bottom: 40px;
+}
+.place .place-con .map{
+  width: 1200px;
+  height: 380px;
+  display: flex;
+}
+.place .place-con .map .map-right{
+  width: 600px;
+  height: 380px;
+  background: #F96D43;
+}
+.place .place-con .map .map-left{
+  width: 600px;
+  height: 380px;
+}
+.map-right{
+  padding: 88px 0 0 73px;
+}
+.map-right span{
+  color: #fff;
+}
+.map-right .brs{
+  margin: 0 20px;
+  height: 20px;
+}
+.map-right img{
+  margin-right: 12px;
+  /* display: block; */
+}
+.map-right div{
+  margin-top: 24px;
+}
+.alert{
+  position: fixed;
+  width: 420px;
+  height: 330px;
+  background: #fff;
+  opacity: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* z-index: 5; */
+  /* margin: 0 auto; */
+}
+.alert .xiao{
+  width: 210px;
+  height: 19px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #999999;
+  margin: 0 auto;
+}
+.alert .imgs{
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  width: 90px;
+  height: 114px;
+  margin-left: 165px;
+}
+.alert .da{
+  width: 90px;
+  height: 24px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000000;
+  margin: 0 auto;
+}
+.alert button{
+  width: 210px;
+  height: 48px;
+  background: #E85C2C;
+  opacity: 1;
+  border-radius: 24px;
+  border: 0;
+  outline: none;
+  padding: 0;
+  color: rgb(240, 233, 233);
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 39px;
+  margin-left: 105px;
+  /* margin: 0 auto; */
+}
+.rqw{
+  position: relative;
+}
+.r{
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+  /* display: none; */
 }
 </style>

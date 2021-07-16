@@ -11,10 +11,10 @@
     <div class="search" style="width:300px"></div>
     <div class="header-new">
       <ul>
-        <li class="active" @click="$router.push('home')">首页</li>
-        <li @click="$router.push('product')">产品及技术</li>
-        <li @click="$router.push('home')">正品汇商城</li>
-        <li @click="$router.push('recruitment')">联系我们</li>
+        <li :class="{active: num === '1'}" @click="goPage(num)">首页</li>
+        <li :class="{active: num === '2'}" @click="goPage(num)">产品及技术</li>
+        <li :class="{active: num === '3'}" @click="goPage(num)">正品汇商城</li>
+        <li :class="{active: num === '4'}" @click="goPage(num)">联系我们</li>
       </ul>
     </div>
     </div>
@@ -23,31 +23,29 @@
 <script>
 export default {
   name:"Header",
+  prop: {
+    num: '1'
+  },
   data(){
     return{
-
+      isActive: '1'
     }
   },
-  mounted(){
-    //导航条class的切换
-    var liArr = document.getElementsByTagName("li");
-    console.log(liArr);
-    for(var i=0;i<liArr.length;i++){   //要为每一个按钮绑定事件，所以用到了for循环
-        liArr[i].onclick = function () {
-            for(var j=0;j<liArr.length;j++){
-                liArr[j].className = "";
-            }
-            this.className = "active";  //【重要】核心代码
-        }
+  methods:{
+    goPage(val){
+      // this.isActive = val
+      if(val === '1') this.$router.push('/home')
+      if(val === '2') this.$router.push('/product')
+      if(val === '3') this.$router.push('/mall')
+      if(val === '4') this.$router.push('/recruitment')
     }
   },
-  methods:{},
   components:{},
 
 }
 </script>
 
-<style>
+<style scoped>
 *{
   padding: 0;
   margin: 0;
@@ -65,13 +63,13 @@ export default {
 }
 .outer{
   display: flex;
-  height: 60px;
   width: 1200px;
   align-items: center;
   justify-content: space-between;
 }
 .header-h1{
   display: flex;
+  cursor: pointer;
 }
 .header-h1 img{
   width: 64px;

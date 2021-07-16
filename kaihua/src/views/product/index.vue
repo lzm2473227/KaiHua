@@ -1,7 +1,27 @@
 <template>
     <div class="layout">
+      <div class="header">
+    <div class="outer">
+      <div class="header-h1" @click="$router.push('/home')">
+      <img src="@/assets/logo_statusbar.png" alt="凯华Log">
+      <div class="title"> 
+        <div class="bold">凯华技术</div>
+        <div>www.kaihuau.cn</div>
+      </div>
+    </div>
+    <div class="search" style="width:300px"></div>
+    <div class="header-new">
+      <ul>
+        <li @click="$router.push('/home')">首页</li>
+        <li class="active">产品及技术</li>
+        <li @click="$router.push('/mall')">正品汇商城</li>
+        <li @click="$router.push('/recruitment')">联系我们</li>
+      </ul>
+    </div>
+    </div>
+  </div>
       <!-- <div class="container"> -->
-        <div class="product container">
+        <div class="product container" style="margin-top: 100px;">
           <div class="top1">
             <img src="@/assets/images/title_icon.png" alt="">
             <div class="top1-title">

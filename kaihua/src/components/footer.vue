@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="footer">
     <div id="footer">
       <div class="footer-wrapper wrapper">
         <div class="footer-left">
@@ -51,6 +51,12 @@ export default {
 }
 </script>
 <style>
+/* .footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+} */
   #footer{
     width: 100%;
     padding: 40px 0;

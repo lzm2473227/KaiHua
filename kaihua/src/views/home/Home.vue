@@ -1,6 +1,25 @@
 <template>
   <div class="layout">
-    <div class="topbar"></div>
+    <div class="header">
+    <div class="outer">
+      <div class="header-h1" @click="$router.push('/home')">
+      <img src="@/assets/logo_statusbar.png" alt="凯华Log">
+      <div class="title"> 
+        <div class="bold">凯华技术</div>
+        <div>www.kaihuau.cn</div>
+      </div>
+    </div>
+    <div class="search" style="width:300px"></div>
+    <div class="header-new">
+      <ul>
+        <li class="active">首页</li>
+        <li @click="$router.push('/product')">产品及技术</li>
+        <li @click="$router.push('/mall')">正品汇商城</li>
+        <li @click="$router.push('/recruitment')">联系我们</li>
+      </ul>
+    </div>
+    </div>
+  </div>
     <div class="content">
       <div class="banner">
         <img src="@/assets/images/banner.png" alt="">
@@ -58,16 +77,19 @@
 </template>
 
 <script>
-
+import Header from "@/components/header"
 export default {
   name:"Home",
   comments: {
-    
+    Header
   },
   data(){
     return {
       
     }
+  },
+  created(){
+    console.log(this.$route)
   },
   methods: {
     go(){
@@ -78,6 +100,9 @@ export default {
 </script>
 
 <style scoped>
+.content{
+  margin-top: 100px;
+}
 .container{
   width: 1200px;
   margin: 0 auto;
